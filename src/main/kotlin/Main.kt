@@ -54,5 +54,16 @@ fun main() {
 
 
     //Ejercicio 5.9
+    var persona1 = Persona("32543781Y")
+
+    listOf<Cuenta>(Cuenta("N1",0.0),
+        Cuenta("N2",700.0),
+        Cuenta("N2",0.0))
+
+    println(persona1.esMorosa())
+
+
+    //Ejercicio 5.10
+
 
 }
