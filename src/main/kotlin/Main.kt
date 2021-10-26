@@ -4,14 +4,26 @@
  * Realizamos varios ejercicios contenidos en el boletín 3.1 de Kotlin
  *
  */
-fun claseTiempo(){
+fun claseTiempo() {
     print("Escriba un numero de horas: ")
-    var hora1 = try {readLine()!!.toByte()} catch (_: Exception) {0}
+    var hora1 = try {
+        readLine()!!.toByte()
+    } catch (_: Exception) {
+        0
+    }
     print("Escriba un numero de minutos: ")
-    var minuto1 = try {readLine()?.toByte()} catch (_: Exception) {0}
+    var minuto1 = try {
+        readLine()?.toByte()
+    } catch (_: Exception) {
+        0
+    }
     print("Escriba un numero de segundos: ")
-    var segundo1 = try {readLine()?.toByte()} catch (_: Exception) {0}
-    var tiempo1 = Tiempo(hora1, minuto1,segundo1)
+    var segundo1 = try {
+        readLine()?.toByte()
+    } catch (_: Exception) {
+        0
+    }
+    var tiempo1 = Tiempo(hora1, minuto1, segundo1)
     println("$tiempo1")
 }
 
@@ -56,9 +68,11 @@ fun main() {
     //Ejercicio 5.9
     var persona1 = Persona("32543781Y")
 
-    listOf<Cuenta>(Cuenta("N1",0.0),
-        Cuenta("N2",700.0),
-        Cuenta("N2",0.0))
+    var listacuentas = listOf<Cuenta>(Cuenta("N1", 0.0),
+                                        Cuenta("N2", 700.0),
+                                        Cuenta("N2", 0.0))
+
+    println(listacuentas.forEach{persona1.insertCuenta(it)})
 
     println(persona1.esMorosa())
 
