@@ -29,7 +29,7 @@ fun claseTiempo() {
 
 
 fun main() {
-
+/*
     // Ejercicio 5.6
     var rectangulo1 = Rectangulo(10.1, 5.2) //Primer objeto rectangulo
     var rectangulo2 = Rectangulo(6.4, 2.8) //Segundo objeto rectangulo
@@ -64,13 +64,13 @@ fun main() {
     //Ejercicio 5.8
     claseTiempo()
 
-
+*/
     //Ejercicio 5.9
     var persona1 = Persona("32543781Y")
 
     var listacuentas = listOf<Cuenta>(Cuenta("N1", 0.0),
                                         Cuenta("N2", 700.0),
-                                        Cuenta("N2", 0.0))
+                                        Cuenta("N1", 0.0))
 
     println(listacuentas.forEach{persona1.insertCuenta(it)})
 

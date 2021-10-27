@@ -1,3 +1,5 @@
+import javafx.beans.binding.When
+
 class Cuenta(val numeroCuenta: String, saldo: Double? = 0.0) {
 
     var saldo = saldo
@@ -22,20 +24,26 @@ class Persona(val dni: String) {
     var listadoCuentas: Array<Cuenta?> = arrayOfNulls<Cuenta>(3)
 
     fun insertCuenta(cuenta: Cuenta): String {
-        var mensaje: String = "La persona ${this.dni} ha alcanzado el maximo de cuentas asignables a una sola persona.\n Maximo de cuentas: 3."
+
+        var mensaje: String = ""
         var i: Int = 0
-        var check: Boolean = false
-        do {
-            if (listadoCuentas[i] == null) {
-                listadoCuentas[i] = cuenta
-                mensaje = "La cuenta $cuenta ha sido añadida con exito a la posicion $i."
-                check = true
-            } else if (listadoCuentas[i] == cuenta) {
-                mensaje = "La cuenta seleccionada ya ha sido añadida a la persona ${this.dni}."
-                check = true
+        var check: Int = 0
+        while (check == 0) {
+            when {
+                listadoCuentas[i] == null -> {
+                    listadoCuentas[i] = cuenta
+                    mensaje = "La cuenta $cuenta ha sido añadida con exito a la posicion $i."
+                    check = 1
+                }
+                listadoCuentas[i] == cuenta -> {
+                    mensaje = "La cuenta seleccionada ya ha sido añadida a la persona ${this.dni}."
+                    check = 1
+                }
+                else -> {
+                    i++
+                }
             }
-            i++
-        } while (!check || i < listadoCuentas.size)
+        }
         return mensaje
     }
 
@@ -43,7 +51,8 @@ class Persona(val dni: String) {
         var mensaje: String = "La persona ${this.dni} no tiene cuentas en negativo."
         for (cuenta in listadoCuentas) {
             if (cuenta?.saldo!! < 0) {
-                mensaje = "La persona ${this.dni} tiene cuentas en negativo.\nEl saldo de la cuenta es de ${cuenta.saldo}."
+                mensaje =
+                    "La persona ${this.dni} tiene cuentas en negativo.\nEl saldo de la cuenta es de ${cuenta.saldo}."
             }
         }
         return mensaje
