@@ -72,7 +72,10 @@ fun main() {
                                         Cuenta("N2", 700.0),
                                         Cuenta("N1", 0.0))
 
-    println(listacuentas.forEach{persona1.insertCuenta(it)})
+    listacuentas.forEach{println(persona1.insertCuenta(it))}
+
+    persona1.listadoCuentas[0]?.recibeAbonos(1100.0)
+    persona1.listadoCuentas[1]?.realizaPagos(750.0)
 
     println(persona1.esMorosa())
 

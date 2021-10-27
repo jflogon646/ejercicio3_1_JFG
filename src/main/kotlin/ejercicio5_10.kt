@@ -10,6 +10,7 @@ class Libro(var titulo: String,var autor: String,var NumeroPaginas: Int,cali: By
         }
     }
 
+
     override fun toString(): String {
         return "Titulo del libro: $titulo\nAutor: $autor\nNúmero de páginas: $NumeroPaginas\nCalificación(0-10): $calificacion"
     }
