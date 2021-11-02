@@ -74,10 +74,10 @@ class ConjuntoLibros(conjunto: Array<Libro>) {
         return check
     }
 
-    fun insertLibro(libro: Libro) {
-
+    fun insertLibro(libro: Libro): Boolean {
         var i: Int = 0
         var check: Int = 0
+        var insertado: Boolean = false
         while (check == 0) {
             when {
                 i > 9 -> {
@@ -86,6 +86,7 @@ class ConjuntoLibros(conjunto: Array<Libro>) {
                 conjunto10[i] == null -> {
                     conjunto10[i] = libro
                     check = 1
+                    insertado = true
                 }
                 conjunto10[i]!!.titulo == libro.titulo -> {
                     check = 1
@@ -100,6 +101,76 @@ class ConjuntoLibros(conjunto: Array<Libro>) {
             }
 
         }
+        return insertado
+    }
+    private fun eliminaAutor(autor: String): Boolean {
+        var eliminado: Boolean = false
+        var i: Int = 0
+        var check: Int = 0
+        while (check == 0) {
+            when {
+                i > 9 -> {
+                    check = 1
+                }
+                conjunto10[i]!!.autor == autor -> {
+                    conjunto10[i] = null
+                    eliminado = true
+                    check = 1
+                }
+                else -> {
+                    i++
+                }
+
+            }
+        }
+        return eliminado
+    }
+    private fun eliminaTitulo(titulo: String): Boolean {
+        var eliminado: Boolean = false
+        var i: Int = 0
+        var check: Int = 0
+        while (check == 0) {
+            when {
+                i > 9 -> {
+                    check = 1
+                }
+                conjunto10[i]!!.titulo == titulo -> {
+                    conjunto10[i] = null
+                    eliminado = true
+                    check = 1
+                }
+                else -> {
+                    i++
+                }
+
+            }
+        }
+        return eliminado
     }
 
+    fun eliminaLibros(libro: String, pClave: String): Boolean {
+        var eliminado: Boolean = false
+        var palabraClave = pClave.uppercase()
+        when (palabraClave) {
+            "AUTOR" -> {
+                eliminado = eliminaAutor(libro)
+            }
+            "TITULO" -> {
+                eliminado = eliminaTitulo(libro)
+            }
+        }
+        return eliminado
+    }
+    fun caliLibro() {
+
+    }
+    fun muestraConjunto() {
+        for (libro in conjunto10) {
+            if (libro != null) {
+                println("*".repeat(25))
+                println("Titulo del libro: ${libro.titulo}\nAutor: ${libro.autor}\nNúmero de páginas: ${libro.NumeroPaginas}\nCalificación: ${libro.calificacion}")
+                println("_".repeat(25))
+            }
+        }
+    }
 }

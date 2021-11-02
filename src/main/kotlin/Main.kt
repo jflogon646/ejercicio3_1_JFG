@@ -81,20 +81,4 @@ fun main() {
 
 */
     //Ejercicio 5.10
-    var lista = arrayOf(0,1,0,null,0,1,0,0,null)
-    fun conjuntoCompleto(): Boolean {
-        var check: Boolean = true
-        var x: Int = 0
-        while (x < 9) {
-            if (lista[x] == null) {
-                check = false
-                x = 10
-            }
-            else {
-                x++
-            }
-        }
-        return check
-    }
-    println(conjuntoCompleto())
 }
