@@ -40,7 +40,7 @@ class Libro(var titulo: String, var autor: String, var NumeroPaginas: Int, cali:
 
 }
 
-class ConjuntoLibros(conjunto: Array<Libro>) {
+class ConjuntoLibros(conjunto: Array<Libro?>) {
     var conjunto10: Array<Libro?> = arrayOfNulls<Libro>(10)
 
     init {
@@ -80,6 +80,9 @@ class ConjuntoLibros(conjunto: Array<Libro>) {
         var insertado: Boolean = false
         while (check == 0) {
             when {
+                conjuntoCompleto() -> {
+                    check = 1
+                }
                 i > 9 -> {
                     check = 1
                 }
@@ -91,9 +94,6 @@ class ConjuntoLibros(conjunto: Array<Libro>) {
                 conjunto10[i]!!.titulo == libro.titulo -> {
                     check = 1
                 }
-                conjuntoCompleto() -> {
-                    check = 1
-                }
                 else -> {
                     i++
                 }
@@ -103,6 +103,7 @@ class ConjuntoLibros(conjunto: Array<Libro>) {
         }
         return insertado
     }
+
     private fun eliminaAutor(autor: String): Boolean {
         var eliminado: Boolean = false
         var i: Int = 0
@@ -125,6 +126,7 @@ class ConjuntoLibros(conjunto: Array<Libro>) {
         }
         return eliminado
     }
+
     private fun eliminaTitulo(titulo: String): Boolean {
         var eliminado: Boolean = false
         var i: Int = 0
@@ -161,16 +163,32 @@ class ConjuntoLibros(conjunto: Array<Libro>) {
         }
         return eliminado
     }
-    fun caliLibro() {
 
+    private fun caliAlta(): String? {
+        conjunto10.sortBy { Libro -> Libro?.calificacion }
+        return conjunto10.last()?.titulo
     }
+
+    private fun caliBaja(): String? {
+        conjunto10.sortBy { Libro -> Libro?.calificacion }
+        return conjunto10.first()?.titulo
+    }
+
+    fun caliLibro(): String {
+        return "Calificación más alta: \"${this.caliAlta()}\" \n" +
+                "Calificación más baja: \"${this.caliBaja()}\" "
+    }
+
     fun muestraConjunto() {
+        var i = 0
         for (libro in conjunto10) {
             if (libro != null) {
-                println("*".repeat(25))
+                println("*".repeat(9) + " Libro " + "*".repeat(9))
                 println("Titulo del libro: ${libro.titulo}\nAutor: ${libro.autor}\nNúmero de páginas: ${libro.NumeroPaginas}\nCalificación: ${libro.calificacion}")
                 println("_".repeat(25))
             }
         }
     }
+
+
 }

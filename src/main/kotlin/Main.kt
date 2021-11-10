@@ -81,4 +81,21 @@ fun main() {
 
 */
     //Ejercicio 5.10
+    /*var libros: Array<Libro?> = arrayOf(Libro("La colmena", "Camilo Jose Cela", 336, 8),
+        Libro("La metamorfosis", "Franz Kafka", 128, 9))
+
+    var conjuntoLibros = ConjuntoLibros(libros)*/
+
+    //println(conjuntoLibros.caliLibro())
+    //conjuntoLibros.muestraConjunto()
+
+    val numbers = listOf(1,2,3)
+    println(numbers.map {it * it}) //Devuelve [1,4,9]
+
+
+
+
+
+
+
 }
